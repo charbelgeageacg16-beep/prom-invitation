@@ -23,6 +23,7 @@ export default function Home() {
   router.push("/login");
   return;
 }
+setTeacherName(storedName);
     const alreadySubmitted = localStorage.getItem("attendanceSubmitted");
 
     if (alreadySubmitted === "true") {

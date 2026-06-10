@@ -25,7 +25,7 @@ export default function LoginPage() {
     if (found) {
         localStorage.setItem("teacherName", found);
         setError("");
-        window.location.href = "/";
+        window.location.href = `/?teacher=${encodeURIComponent(found)}`;
     }else {
         setError("Name not found. Please try again.");
     } 
