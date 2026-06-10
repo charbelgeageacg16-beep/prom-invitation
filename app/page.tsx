@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -13,12 +14,15 @@ export default function Home() {
   const [attendance, setAttendance] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     const storedName = localStorage.getItem("teacherName");
 
-    if (storedName) {
-      setTeacherName(storedName);
-    }
+    if (!storedName) {
+  router.push("/login");
+  return;
+}
     const alreadySubmitted = localStorage.getItem("attendanceSubmitted");
 
     if (alreadySubmitted === "true") {
@@ -86,7 +90,7 @@ const submitAttendance = () => {
   setSubmitted(true);
 };
   return (
-    <main className="min-h-screen bg-[url('/background.jpg')] bg-cover bg-top text-white">
+    <main className="min-h-screen bg-[url('/Background.jpg')] bg-cover bg-top text-white">
 
       {/* Hero Card */}
       <section className="py-16 flex justify-center">
